@@ -5,10 +5,13 @@ from django.conf.urls.static import static
 import profiles.urls
 import accounts.urls
 from . import views
+from game.views import GamePage, generate_data
 
 urlpatterns = [
     url(r'^$', views.HomePage.as_view(), name='home'),
     url(r'^about/$', views.AboutPage.as_view(), name='about'),
+    url(r'^game/$', GamePage.as_view(), name='game'),
+    url(r'^generate_data$', generate_data, name='generate_data'),
     url(r'^users/', include(profiles.urls, namespace='profiles')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include(accounts.urls, namespace='accounts')),
