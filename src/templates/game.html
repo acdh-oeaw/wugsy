@@ -109,9 +109,9 @@
           <form id="get-game" action = "/generate_data" method = "post">{% csrf_token %}
               <input type="submit" name="Generate game" value="submit" />
           </form>
-          <div id="json-space">JSON for a game will appear here</div>
-          <div id="game-space"></div>
       </div>
+    <div id="game-space"></div>
+    <div id="json-space">JSON for a game will appear here</div>
 
     </div><!-- /.container -->
     {% endblock container %}
@@ -156,7 +156,9 @@
               // now, you can call the code that builds and inserts a game
               buildGame(e)
               // here, have the json on screen :)
-              $("#json-space").text(JSON.stringify(e));
+              var jsonData = '<code align="left">' + JSON.stringify(e, null, 4) + '</code>'
+              jsonData = jsonData.replace(/\n/g, '<br>');
+              $("#json-space").html(jsonData);
             }
         });
     });

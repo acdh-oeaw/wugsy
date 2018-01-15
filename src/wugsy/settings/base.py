@@ -99,9 +99,13 @@ WSGI_APPLICATION = 'wugsy.wsgi.application'
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
-    # Raises ImproperlyConfigured exception if DATABASE_URL not in
-    # os.environ
-    'default': env.db(),
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mysql',
+        'USER': 'mysql',
+        'HOST': 'db',
+        'PORT': 5432,
+    }
 }
 
 # Internationalization

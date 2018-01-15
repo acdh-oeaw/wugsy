@@ -1,0 +1,17 @@
+{
+    "game_type": 0,
+    "time_remaining": 0.5,
+    "user_id": 1391,
+    "opponent_id": 2442,
+    "concept_space_text": "Fruits",
+    "bad_game_selected": false,
+    "bad_game_feedback": 
+        {
+            "rating": 2,
+            "reason": "Did not make sense",
+        },
+    "selected_cards": [0, 1, 5, 7, 8],
+    "deleted_cards": [2, 3, 4],
+    "card_order": [6, 2, 1, 7, 9],
+    
+}

@@ -1,5 +1,15 @@
 import random
 
+# just some data to test the system
+CARDS = ['apple',
+         'Banana',
+         'pear',
+         'orange',
+         'a very long card that needs to look ok',
+         'card\twith\ttabs',
+         'ALL CAPS',
+         'automob ile']
+
 class DecideGame(object):
     """
     Class that generates a game from a request
@@ -39,10 +49,10 @@ class DecideGame(object):
         for i in range(0, cards_for_games.get(self._type, 16)):
             out.append(dict(id=i,
                             colour='#ffffff',
-                            card_text='dummy {}'.format(i),
+                            card_text='dummy {}'.format(random.choice(CARDS)),
                             reverse=None,
-                            selected=False,
-                            in_theme=True
+                            selected=random.choice([True, False]),
+                            in_theme=random.choice([True, False])
                             ))
         return out
 

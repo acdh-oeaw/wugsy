@@ -1,0 +1,57 @@
+{
+  "game_type": 0,
+  "game_title": "Select words that match the concept!",
+  "opponent":
+    {
+      "id": 3124,
+      "username": "friendo89",
+      "score": 1378235,
+      "picture": "path/to/photo.jpg"
+    },
+  "cards":
+    [
+      {
+        "id": 0,
+        "colour": "#FFFFFF",
+        "card_text": "Apple",
+        "reverse": null,
+        "selected": false,
+        "in_theme": true
+      },
+
+      {
+        "id": 2,
+        "colour": "#FFFFFF",
+        "card_text": "Banana",
+        "reverse": null,
+        "selected": false,
+        "in_theme": true
+      },
+      {
+        "id": 3,
+        "colour": "#333333",
+        "text": "Table",
+        "reverse": null,
+        "selected": true,
+        "in_theme": false
+      }     
+    ],
+  "concept_space":
+    {
+      "ceoncept_text": "Fruits",
+      "colour": "#ffffff",
+      "hover_text": "Done!"
+    },
+  "user_text_entry_field": 
+    {
+      "placeholder": "enter text here!"
+    },
+  "user_info":
+    {
+      "id": 3130,
+      "username": "player34",
+      "score": 12465,
+      "picture": "path/to/photo2.jpg",
+    },
+  "extra": null
+}
