@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^about/$', views.AboutPage.as_view(), name='about'),
     url(r'^game/$', GamePage.as_view(), name='game'),
     url(r'^generate_data$', generate_data, name='generate_data'),
+    url(r'^game_result$', game_result, name='game_result'),
     url(r'^users/', include(profiles.urls, namespace='profiles')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include(accounts.urls, namespace='accounts')),

@@ -34,15 +34,15 @@
         "reverse": null,
         "selected": true,
         "in_theme": false
-      }     
+      }
     ],
   "concept_space":
     {
-      "ceoncept_text": "Fruits",
+      "concept_text": "Fruits",
       "colour": "#ffffff",
       "hover_text": "Done!"
     },
-  "user_text_entry_field": 
+  "user_text_entry_field":
     {
       "placeholder": "enter text here!"
     },
