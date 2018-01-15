@@ -1,6 +1,6 @@
 # ACDH language game app
 
-> This repo hosts a so-far-untitled web app that gives language games to users, and returns their solutions to a database.
+> This repo hosts a web app that gives language games to users, and returns their solutions to a database.
 
 Key specs:
 
