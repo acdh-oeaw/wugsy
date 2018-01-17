@@ -1,14 +1,22 @@
 version: '3'
 
 services:
-  db:
-    image: mysql
-  web:
-    build: .
-    command: python3 manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/code
-    ports:
-      - "8000:8000"
-    depends_on:
-      - db
+    db:
+        environment:
+            MYSQL_DATABASE: db
+            MYSQL_PASSWORD: password
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_USER: root
+        image: mysql:latest
+        ports:
+          - 3306:3306
+    web:
+        image: wugsy:latest
+        build: .
+        command: python3 src/manage.py runserver 0.0.0.0:8000
+        volumes:
+            - .:/code
+        ports:
+            - "8000:8000"
+        depends_on:
+            - db

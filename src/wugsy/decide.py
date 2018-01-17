@@ -35,7 +35,8 @@ class DecideGame(object):
         return 0
 
     def _get_title(self):
-        return 'Prototype game {} for {}'.format(self._nonce, self.user.name)
+        username = getattr(self.user, 'name', 'anonymous user')
+        return 'Prototype game {} for {}'.format(self._nonce, username)
 
     def _get_opponent(self):
         return dict(id=78,

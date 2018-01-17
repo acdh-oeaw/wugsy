@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 import profiles.urls
 import accounts.urls
 from . import views
-from game.views import GamePage, generate_data
+from game.views import GamePage, generate_data, game_result
 
 urlpatterns = [
     url(r'^$', views.HomePage.as_view(), name='home'),
