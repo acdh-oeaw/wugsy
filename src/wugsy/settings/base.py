@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 from django.core.urlresolvers import reverse_lazy
 from os.path import dirname, join, exists
+import sys
 
 # Build paths inside the project like this: join(BASE_DIR, "directory")
 BASE_DIR = dirname(dirname(dirname(__file__)))
@@ -98,16 +99,22 @@ WSGI_APPLICATION = 'wugsy.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mysql',
-        'USER': 'root',
-        'PASSWORD': 'password',
-        'HOST': 'db',
-        'PORT': 3306,
+# this is a quick workaround to detect if we are using docker or not
+# it needs to change in the future, and will fail if user passes in this arg
+DOCKER = '0.0.0.0:8000' in sys.argv
+if not DOCKER:
+    DATABASES = {'default': env.db()}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'mysql',
+            'USER': 'root',
+            'PASSWORD': 'password',
+            'HOST': 'db',
+            'PORT': 3306,
+        }
     }
-}
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/

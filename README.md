@@ -13,32 +13,49 @@ Key specs:
 
 ## Quickstart
 
-To run/develop *wugsy* locally, first, make sure you have Docker installed, and the Docker daemon running. Then, clone the repo, `cd` into it, and use the provided script:
+To run/develop *wugsy* locally, first, make sure you have Docker installed, and the Docker daemon running. Then, clone the repo, `cd` into it, make a local settings file, and use the provided script to launch:
 
 ```bash
 git clone https://github.com/acdh-oeaw/wugsy
 cd wugsy
+cp src/wugsy/settings/local.sample.env src/wugsy/settings/local.env
 sh ./start.sh
 ```
 
-If you don't have or want to use Docker, you can try something like:
+Then, point your web browser to `http:/localhost:8000/`.
+
+### Running without Docker
+
+Docker is the preferred way to do development, because we can all be more certain that we are running code in the same environment. It also simplifies deployment a log.
+
+But, if you don't have or want to use Docker, there is still hope. If this is you, please work from within a Python 3 [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/). Then, do something like:
 
 ```bash
 git clone https://github.com/acdh-oeaw/wugsy
 cd wugsy
+cp src/wugsy/settings/local.sample.env src/wugsy/settings/local.env
 pip install -r requirements.txt
+python src/manage.py makemigrations
+python src/manage.py migrate
 python src/manage.py runserver
 ```
 
-Then, point your web browser to `localhost:8000`.
+Then, point your web browser to `http://127.0.0.1:8000/`.
 
-## Backend
+## Quick overview of the system
 
-The backend receives a request for a game from a given user. It then extracts data from a language database, and generates the data needed for a game. There are a number of types of games, but most centre on linking words and concepts. Game data is transformed into JSON and sent to the frontend. When a game is finished, the frontend returns the results, which the backend then adds to a database. This process can repeat for a number of games in a row.
+1. Users can login, which stores profile data to a database
+2. Users request a game from the backend
+3. Backend uses their profile data, a language database and existing responses to produce the data needed for a new game
+4. Backend sends this data to frontend as JSON
+5. Frontend uses the JSON data to make a nice game for the user
+6. User plays game and reaches the end
+7. Game data is send back to the backend
+8. Backend stores result and produces a new game (etc.)
 
 ## The JSON
 
-To make collaboration easier, we use JSON to exchange data between frontend and backend. To aid this process, we have some schemata that describe how the JSON should be structured. Information about these schemata can be found in `schemata/schemata.md`.
+To make collaboration between backend and frontend devs easier, we use JSON to exchange data. To aid this process, we have some schemata that describe how the JSON should be structured. Information about these schemata can be found in `schemata/schemata.md`.
 
 The backend -> frontend format, which gives the frontend everything needed to set the look and behaviour of the game board, is provided in `schemata/new-game.json`.
 
@@ -46,11 +63,9 @@ The frontend -> backend format, used to communicate game results, is provided in
 
 Python code for validating JSON is in `src/wugsy/validate.py`.
 
-> JSON for user profiles will be done later.
-
 ## Rules
 
-For each game type, there will be an associated rule list described in `rules/`. For `game00`, for example, in `rules/game00.md` we may find:
+For each game type, there should be an associated rule list described in `rules/`. For `game00`, for example, in `rules/game00.md` we may find:
 
 ```text
 * TITLE: "Describe the concept to your opponent without using any of the displayed words"
@@ -91,3 +106,7 @@ For a hypothetical `game03`:
 7. Add this game to the `games` map so that it will be automatically found
 
 The game should be aesthetically pleasing, minimalistic and clean. Animations, transitions etc. are not required for the prototype, but should be included later.
+
+### Collaboration
+
+Project is open source and anybody can contribute. Please use issue tracking. Create branches for each issue and submit PRs.
