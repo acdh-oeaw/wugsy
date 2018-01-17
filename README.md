@@ -11,6 +11,27 @@ Key specs:
 * CI and unittests
 * Zenodo
 
+## Quickstart
+
+To run/develop *wugsy* locally, first, make sure you have Docker installed, and the Docker daemon running. Then, clone the repo, `cd` into it, and use the provided script:
+
+```bash
+git clone https://github.com/acdh-oeaw/wugsy
+cd wugsy
+sh ./start.sh
+```
+
+If you don't have or want to use Docker, you can try something like:
+
+```bash
+git clone https://github.com/acdh-oeaw/wugsy
+cd wugsy
+pip install -r requirements.txt
+python src/manage.py runserver
+```
+
+Then, point your web browser to `localhost:8000`.
+
 ## Backend
 
 The backend receives a request for a game from a given user. It then extracts data from a language database, and generates the data needed for a game. There are a number of types of games, but most centre on linking words and concepts. Game data is transformed into JSON and sent to the frontend. When a game is finished, the frontend returns the results, which the backend then adds to a database. This process can repeat for a number of games in a row.
