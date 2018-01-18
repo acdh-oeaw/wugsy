@@ -5,7 +5,7 @@
 ## Procedure
 
 1. User enters game
-2. Cards are populated
+2. Text is added to each card (25?)
 
 ## Data returned after game is played:
 
