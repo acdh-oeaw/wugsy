@@ -17,6 +17,8 @@ STATICFILES_DIRS = [join(BASE_DIR, 'static')]
 MEDIA_ROOT = join(BASE_DIR, 'media')
 MEDIA_URL = "/media/"
 APPEND_SLASH=False
+DJANGO_SETTINGS_MODULE = 'wugsy.settings'
+
 
 # Use Django templates using the new Django 1.8 TEMPLATES settings
 TEMPLATES = [
@@ -79,7 +81,10 @@ INSTALLED_APPS = (
 
     'profiles',
     'accounts',
-
+    'questionnaire',
+    'game',
+    'insights',
+    'stories'
 )
 
 MIDDLEWARE_CLASSES = (

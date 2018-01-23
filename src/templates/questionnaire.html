@@ -102,18 +102,18 @@
     <div class="container">
 
       <div class="starter-template">
-        <h1>Game view</h1>
+        <h1>Questionnaire</h1>
           {% if not user.is_authenticated %}
-            <h2>Game for random user</h2>
+            <h2>for random user</h2>
           {% else %}
-            <h2>Game for logged in user: {{user.get_full_name}}</h2>
+            <h2>for logged in user: {{user.get_full_name}}</h2>
           {% endif %}
-          <form id="get-game" action = "/game/generate_data" method = "post">{% csrf_token %}
-              <input type="submit" name="submit" value="Generate game" />
+          <form id="question-space" action = "/questionnaire/quest" method = "post">{% csrf_token %}
+              <input type="submit" name="Get data" value="submit" />
           </form>
       </div>
-    <div id="game-space"></div>
-    <div id="json-space">JSON for a game will appear here</div>
+    <div id="question-space"></div>
+    <div id="json-space">JSON for a question will appear here</div>
 
     </div><!-- /.container -->
     {% endblock container %}
@@ -143,20 +143,17 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'site/js/game.js' %}"></script>
     {% block scripts %}
     <script>
-    $('#get-game').submit(function(e){
+    $('#question-space').submit(function(e){
     e.preventDefault();
         $.ajax({
-            url:"/game/generate_data",
+            url:"/questionnaire/quest",
             type:'post',
-            data:$('#get-game').serialize(),
+            data:$('#question-space').serialize(),
             success:function(e){
-              console.log('Below is validated game JSON, which should be interpretable')
+              console.log('Question data might go here')
               console.log(e);
-              // now, you can call the code that builds and inserts a game
-              buildGame(e)
               // here, have the json on screen :)
               var jsonData = '<code align="left">' + JSON.stringify(e, null, 4) + '</code>'
               jsonData = jsonData.replace(/\n/g, '<br>');
