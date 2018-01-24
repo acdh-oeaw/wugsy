@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}Insights into our data{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="insights" %}
+{% endblock %}
+
+<!-- Benefits of the Django application -->
+{% block container %}
+<div id="intro-insights" class="text-page">
+  <h1>New users will get a site tour.</h1>
+</div>
+<div>
+    <span>
+        <a class="btn btn-primary" href="{% url 'game:play' %}" role="button">Language games</a>
+        <a class="btn btn-primary" href="{% url 'accounts:signup' %}" role="button">Questionnaires</a>
+        <a class="btn btn-primary" href="{% url 'accounts:signup' %}" role="button">Data exploration</a>
+        <a class="btn btn-primary" href="{% url 'accounts:signup' %}" role="button">User stories</a>
+        <a class="btn btn-primary" href="{% url 'accounts:signup' %}" role="button">Home</a>
+    </div>
+{% endblock container %}
