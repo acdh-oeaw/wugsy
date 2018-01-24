@@ -78,13 +78,14 @@ INSTALLED_APPS = (
     'authtools',
     'crispy_forms',
     'easy_thumbnails',
+    'rest_framework,
 
-    'profiles',
-    'accounts',
-    'questionnaire',
-    'game',
-    'insights',
-    'stories'
+    #'profiles',
+    #'accounts',
+    #'questionnaire',
+    #'game',
+    #'insights',
+    #'stories'
 )
 
 MIDDLEWARE_CLASSES = (

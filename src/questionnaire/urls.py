@@ -1,7 +1,6 @@
 from django.conf.urls import url, include
 from rest_framework.urlpatterns import format_suffix_patterns
 from .views import QuestionnairePage, CreateView, DetailsView, QuestView
-from django.conf import settings
 
 urlpatterns = {
     url(r'^$', QuestionnairePage.as_view(), name='questionnaire'),
