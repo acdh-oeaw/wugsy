@@ -20,3 +20,7 @@ services:
             - "8000:8000"
         depends_on:
             - db
+    fuseki:
+        image: stain/jena-fuseki:3.4.0
+        ports:
+            - "3030:3030"
