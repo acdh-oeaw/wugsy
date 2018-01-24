@@ -9,7 +9,7 @@ sleep 5
 docker exec -it wugsy_web_1 python3 src/manage.py makemigrations
 docker exec -it wugsy_web_1 python3 src/manage.py migrate
 docker exec -it wugsy_web_1 python3 src/manage.py migrate easy_thumbnails
-echo "Ready! Navigate to http://localhost:8000"
+echo "Ready! Navigate to wugsy_web_1 with http://localhost:8000"
 if [ -z "$1" ]
   then
     docker attach wugsy_web_1

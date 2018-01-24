@@ -1,5 +1,5 @@
 <li {% if active_link == "home" %}class="active"{% endif %}><a href="{% url 'home' %}">Home</a></li>
-<li {% if active_link == "game" %}class="active"{% endif %}><a title="Play a language game for crypto" href="{% url 'play' %}">Game</a></li>
+<li {% if active_link == "game" %}class="active"{% endif %}><a title="Play a language game for crypto" href="{% url 'game' %}">Game</a></li>
 <li {% if active_link == "questionnaire" %}class="active"{% endif %}><a title="Engage with our qeustionnaire" href="{% url 'questionnaire' %}">Questionnaire</a></li>
 <li {% if active_link == "stories" %}class="active"{% endif %}><a title="Experience some user stories" href="{% url 'stories' %}">Stories</a></li>
 <li {% if active_link == "insights" %}class="active"{% endif %}><a title="See what we can do with our data" href="{% url 'insights' %}">Insights</a></li>

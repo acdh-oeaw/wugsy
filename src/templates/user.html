@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}Insights into our data{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="insights" %}
+{% endblock %}
+
+<!-- Benefits of the Django application -->
+{% block container %}
+<div id="intro-insights" class="text-page">
+  <h1>On this page there would be real-time display of data.</h1>
+</div>
+{% endblock container %}

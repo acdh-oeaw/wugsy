@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth import get_user_model
 from django.contrib import auth
@@ -11,6 +11,9 @@ from . import forms
 
 User = get_user_model()
 
+
+class AccountView(generic.TemplateView):
+    template_name = "account.html"
 
 class LoginView(bracesviews.AnonymousRequiredMixin,
                 authviews.LoginView):
