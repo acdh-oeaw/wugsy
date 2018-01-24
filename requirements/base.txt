@@ -9,3 +9,6 @@ djangorestframework
 psycopg2
 mysqlclient
 SPARQLWrapper
+chardet
+idna
+urllib3
