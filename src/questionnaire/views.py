@@ -3,10 +3,8 @@ from .serializers import QuestionlistSerializer
 from .models import Questionlist
 from .models import answers
 from SPARQLWrapper import SPARQLWrapper, JSON
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.template import loader
-import requests
-
 
 from django.shortcuts import render
 from django.views import generic
