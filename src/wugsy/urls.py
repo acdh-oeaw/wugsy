@@ -17,7 +17,7 @@ apps = [
     path(r'game', include(game.urls)),
     path(r'questionnaire', include(questionnaire.urls)),
     path(r'insights', include(insights.urls)),
-    path(r'accounts', include(accounts.urls)),
+    path(r'', include(accounts.urls, namespace='accounts')),
     path(r'generate_data', generate_data, name='generate_data'),
     path(r'game_result', game_result, name='game_result'),
 ]
@@ -37,8 +37,3 @@ urlpatterns = apps + urlpatterns
 
 # User-uploaded files like profile pics need to be served in development
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-# Include django debug toolbar if DEBUG is on
-if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns += [path(r'__debug__', include(debug_toolbar.urls))]
