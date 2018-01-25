@@ -30,17 +30,65 @@ class DetailsView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Questionlist.objects.all()
     serializer_class = QuestionlistSerializer
 
-class QuestView(APIView):
+class QuestionnaireView(APIView):
     def get(self, request):
         sparql = SPARQLWrapper("http://fuseki:3030/Questionnaire/query")
         sparql.setQuery("""
-                     # PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-                     # SELECT ?s ?label
-                            # WHERE { ?s rdfs:label ?label } limit 10
 
-                    select distinct ?subject ?predicate ?object
-                    where {?subject ?predicate ?object} LIMIT 10
+                    SELECT *
+                    From named <http://localhost/questionnaires>
+                    WHERE {
+                    Graph <http://localhost/questionnaires> {?s ?p ?o}
+                    } Limit 50
                  """)
+        sparql.setReturnFormat(JSON)
+        results = sparql.query().convert()
+        return Response(results)
+class QuestionView(APIView):
+    def get(self, request):
+        sparql = SPARQLWrapper("http://fuseki:3030/Questionnaire/query")
+        sparql.setQuery("""
+
+                    SELECT *
+                    From named <http://localhost/questions>
+                    WHERE {
+                    Graph <http://localhost/questions> {?s ?p ?o}
+                    } Limit 50
+                 """)
+        sparql.setReturnFormat(JSON)
+        results = sparql.query().convert()
+        return Response(results)
+
+class DetailedQuestionnaireView(APIView):
+    def get(self, request,pk):
+        #the query will strip the questionnaire number and replace http://localhost/oldca/fragebogen/1 in the query
+        subj = "<http://localhost/oldca/fragebogen/" + pk + ">"
+        sparql = SPARQLWrapper("http://fuseki:3030/Questionnaire/query")
+        sparql.setQuery("""
+
+                        SELECT *
+                        From named <http://localhost/questionnaires>
+                        WHERE {
+                        Graph <http://localhost/questionnaires> {""" +subj + """ ?p ?o}
+                        } Limit 50
+                     """)
+        sparql.setReturnFormat(JSON)
+        results = sparql.query().convert()
+        return Response(results)
+
+class DetailedQuestionView(APIView):
+    def get(self, request,pk):
+        # the query will strip the questionnaire number and replace http://localhost/oldca/fragebogen/1 in the query
+        subj="<http://localhost/oldca/frage/" +pk +">"
+        sparql = SPARQLWrapper("http://fuseki:3030/Questionnaire/query")
+        sparql.setQuery("""
+
+                        SELECT *
+                        From named <http://localhost/questions>
+                        WHERE {
+                        Graph <http://localhost/questions> {""" +subj + """ ?p ?o}
+                        } Limit 50
+                     """)
         sparql.setReturnFormat(JSON)
         results = sparql.query().convert()
         return Response(results)

@@ -1,6 +1,9 @@
 version: '3'
+volumes:
+     fuseki-data:
 
 services:
+
     db:
         environment:
             MYSQL_DATABASE: db
@@ -20,7 +23,17 @@ services:
             - "8000:8000"
         depends_on:
             - db
+    fusekidata:
+        image: busybox
+        volumes:
+            - fuseki-data:/fuseki/databases
     fuseki:
         image: stain/jena-fuseki:3.4.0
         ports:
             - "3030:3030"
+        volumes:
+            - fuseki-data:/fuseki/databases
+        environment:
+            - ADMIN_PASSWORD=admin
+            - FUSEKI_BASE=/fuseki
+            - JVM_ARGS=-Xms4g -Xmx8g
