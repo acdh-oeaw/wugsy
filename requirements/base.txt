@@ -1,5 +1,6 @@
 
 Django==2.0.1
+django-environ
 django-braces>=1.11.0
 django-crispy-forms>=1.6.1
 django-admin-bootstrapped>=2.5.7
