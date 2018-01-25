@@ -12,8 +12,8 @@ if "celery" in sys.argv[0]:
     DEBUG = False
 
 # Django Debug Toolbar
-#INSTALLED_APPS += (
-#    'debug_toolbar',)
+INSTALLED_APPS += (
+    'debug_toolbar',)
 
 # Additional middleware introduced by debug toolbar
 
@@ -80,6 +80,6 @@ LOGGING = {
     }
 }
 
-#MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
+MIDDLEWARE += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
 
 logging.config.dictConfig(LOGGING)

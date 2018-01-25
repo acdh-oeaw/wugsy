@@ -85,22 +85,23 @@ INSTALLED_APPS = (
     'questionnaire',
     'game',
     'insights',
-    'stories'
+    'stories',
+    'wugsy'
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware'
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware'
 )
 
 ROOT_URLCONF = 'wugsy.urls'
 
-WSGI_APPLICATION = 'wugsy.wsgi.application'
+#WSGI_APPLICATION = 'wugsy.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
