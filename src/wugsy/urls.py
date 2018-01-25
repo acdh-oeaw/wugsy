@@ -15,7 +15,6 @@ from django.contrib import admin
 
 apps = [
     path(r'game', include(game.urls)),
-    path(r'stories', include(stories.urls)),
     path(r'questionnaire', include(questionnaire.urls)),
     path(r'insights', include(insights.urls)),
     path(r'accounts', include(accounts.urls)),
@@ -27,9 +26,6 @@ urlpatterns = [
     path(r'', views.HomePage.as_view(), name='home'),
     path(r'tour', views.TourPage.as_view(), name='tour'),
     path(r'game', include('game.urls')),
-    path(r'accounts', include('accounts.urls')),
-    path(r'insights', include('insights.urls')),
-    path(r'questionnaire', include('questionnaire.urls')),
     path(r'stories', include('stories.urls')),
     path(r'health', include('health.urls')),
     path(r'generate_data', generate_data, name='generate_data'),
