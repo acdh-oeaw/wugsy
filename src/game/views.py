@@ -39,7 +39,7 @@ def game_result(request):
         raise NotImplementedError('Not done yet')
     else:
         raise NotImplementedError(" error")
-        return generate_data(request)
+    return generate_data(request)
 
 
 def _add_to_database(given_data, user):
