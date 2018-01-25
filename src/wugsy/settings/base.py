@@ -7,7 +7,7 @@ https://docs.djangoproject.com/en/dev/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from os.path import dirname, join, exists
 import sys
 
@@ -78,14 +78,14 @@ INSTALLED_APPS = (
     'authtools',
     'crispy_forms',
     'easy_thumbnails',
-    'rest_framework,
+    'rest_framework',
 
-    #'profiles',
-    #'accounts',
-    #'questionnaire',
-    #'game',
-    #'insights',
-    #'stories'
+    'profiles',
+    'accounts',
+    'questionnaire',
+    'game',
+    'insights',
+    'stories'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -95,7 +95,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
 )
 
 ROOT_URLCONF = 'wugsy.urls'
