@@ -7,7 +7,7 @@ class AboutPage(generic.TemplateView):
     template_name = "about.html"
 
 class TourPage(generic.TemplateView):
-    template_name = "tour.html"
+    template_name = 'tour.html'
 
 class UsersPage(generic.TemplateView):
     template_name = "user.html"

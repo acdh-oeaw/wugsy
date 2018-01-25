@@ -113,7 +113,7 @@
           {% else %}
             <h2>Game for logged in user: {{user.get_full_name}}</h2>
           {% endif %}
-          <form id="get-game" action = "/game/generate_data" method = "post">{% csrf_token %}
+          <form id="get-game" action = "/generate_data" method = "post">{% csrf_token %}
               <input type="submit" name="submit" value="Generate game" />
           </form>
       </div>
@@ -154,7 +154,7 @@
     $('#get-game').submit(function(e){
     e.preventDefault();
         $.ajax({
-            url:"/game/generate_data",
+            url:"/generate_data",
             type:'post',
             data:$('#get-game').serialize(),
             success:function(e){
