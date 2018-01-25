@@ -1,6 +1,7 @@
 # Game 00 Single Player
 
 > Game may consist of several rounds with the same "board". Objective is to get links between a concept and words.
+aesfafaefqef
 First round (or task): Player makes as much initial links between a concept and the displayed words as he can in a given time period (e.g. from marriage to apple).
 Second round: Player makes "secondary links" between the words he picked and those on the board (e.g. from apple to pear)
 third round: Player makes "tertiary links" between the words he selected in the second round and those on the board (e.g. pear to fruit)
