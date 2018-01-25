@@ -2,25 +2,24 @@ from django.urls import include, path
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-import profiles.urls
-import accounts.urls
-import accounts
 from . import views
+from game.views import GamePage, generate_data
 
 from django.contrib import admin
 
 urlpatterns = [
     path(r'', views.HomePage.as_view(), name='home'),
     path(r'tour', views.TourPage.as_view(), name='tour'),
-    path(r'game/?', include('game.urls')),
-    path(r'accounts/?', include('accounts.urls')),
-    path(r'insights/?', include('insights.urls')),
-    path(r'questionnaire/?', include('questionnaire.urls')),
-    path(r'stories/?', include('stories.urls')),
-    path(r'health/?', include('health.urls')),
-    path(r'admin/?', admin.site.urls),
+    path(r'game', include('game.urls')),
+    path(r'accounts', include('accounts.urls')),
+    path(r'insights', include('insights.urls')),
+    path(r'questionnaire', include('questionnaire.urls')),
+    path(r'stories', include('stories.urls')),
+    path(r'health', include('health.urls')),
+    path(r'generate_data', generate_data, name='generate_data'),
+    path(r'admin', admin.site.urls),
 
-    path(r'about/?', views.AboutPage.as_view(), name='about'),
+    path(r'about', views.AboutPage.as_view(), name='about'),
     #path(r'^users/', include(profiles.urls)),
 ]
 
