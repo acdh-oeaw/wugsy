@@ -1,3 +1,4 @@
+
 Django==2.0.1
 django-braces>=1.11.0
 django-crispy-forms>=1.6.1
@@ -8,3 +9,6 @@ djangorestframework
 psycopg2
 mysqlclient
 SPARQLWrapper
+chardet
+idna
+urllib3

@@ -14,6 +14,7 @@ class BaseProfile(models.Model):
     # or with default values
     picture = models.ImageField('Profile picture',
                                 upload_to='profile_pics/%Y-%m-%d/',
+                                #on_delete=models.CASCADE,
                                 null=True,
                                 blank=True)
     bio = models.CharField("Short Bio", max_length=200, blank=True, null=True)

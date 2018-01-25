@@ -12,6 +12,9 @@ from . import forms
 User = get_user_model()
 
 
+class AccountView(generic.TemplateView):
+    template_name = "account.html"
+
 class LoginView(bracesviews.AnonymousRequiredMixin,
                 authviews.LoginView):
     template_name = "accounts/login.html"

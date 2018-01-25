@@ -31,6 +31,7 @@ class DetailsView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = QuestionlistSerializer
 
 class QuestView(APIView):
+
     def get(self, request):
         sparql = SPARQLWrapper("http://fuseki:3030/Questionnaire/query")
         sparql.setQuery("""
