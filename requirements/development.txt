@@ -2,3 +2,4 @@
 django-debug-toolbar
 Werkzeug
 certifi
+django_extensions

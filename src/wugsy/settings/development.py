@@ -13,6 +13,7 @@ if "celery" in sys.argv[0]:
 
 # Django Debug Toolbar
 INSTALLED_APPS += (
+    'django_extensions',
     'debug_toolbar',)
 
 # Additional middleware introduced by debug toolbar
