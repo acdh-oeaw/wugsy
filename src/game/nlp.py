@@ -16,6 +16,10 @@ from nltk.collocations import BigramCollocationFinder
 from spacy.tokens import Doc
 
 class Analyser(object):
+    """
+    Class for analysing string of language with known language.
+    if reference corpus provided, it is used for awesome vectors.
+    """
 
     def __init__(self, language='en', reference=None): # 'default.txt'
         self.sample = None
@@ -36,9 +40,6 @@ class Analyser(object):
 
     def parse(self, sample):
         self.original_text = sample
-        #if not isinstance(sample, LanguageSample):
-        #    sample = LanguageSample(sample)
-        #self.sample = sample
         self.doc = self.spacy_model(sample)
         return self.doc
 
@@ -60,7 +61,7 @@ class Analyser(object):
         for fname in files:
             with open(fname, 'r') as fo:
                 concat.append(fo.read())
-        return '\n'.join(concat)
+        return spacy.load('\n'.join(concat))
 
     def insights(self, parsed=None):
         self.doc = parsed if parsed is not None else self.doc
@@ -79,28 +80,35 @@ class Analyser(object):
     def analyse_token(self, token):
         analysis = dict()
         print(token.pos_.lower())
-        is_open_class = token.pos_.lower() in 'njvr'
-        if is_open_class:
-            for name, method in self.name_func.items():
-                print('run', name)
-                component = method(token)
-                analysis[name] = component
+        is_open_class = token.pos_.lower()[0] in 'njvr'
+        if not is_open_class or token.is_stop:
+            return analysis
+        for name, method in self.name_func.items():
+            print('run', name)
+            component = method(token)
+            analysis[name] = component
+        # ideally we would compress analysis and token int shared object
         #supertoken = SuperToken(token, analysis)
         return analysis
 
     def sentiment(self, token):
         return token.sentiment
 
+    @staticmethod
+    def formatter(token):
+        return '{}.{}.1'.format(token.lemma_, token.pos_[0].lower())
+
     def most_similar(self, word):
-        return
         queries = [w for w in word.vocab if w.is_lower == word.is_lower and w.prob >= -15]
         by_similarity = sorted(queries, key=lambda w: word.similarity(w), reverse=True)
         return [w.lower_ for w in self.most_similar(self.spacy_model.vocab[word])]
-        #return by_similarity[:10]
 
     def get_hypernyms(self, token):
-        formatted = '{}.{}.1'.format(token.lemma_, token.pos_)
-        hyps = self.wordnet.synset(formatted)[0].hypernyms()
+        formatted = self.formatter(token)
+        try:
+            hyps = self.wordnet.synset(formatted).hypernyms()
+        except:
+            return list()
         answers = set()
         for hyp in hyps:
             for lem in hyp.lemmas():
@@ -108,8 +116,8 @@ class Analyser(object):
         return list(answers)
 
     def get_hyponyms(self, token):
-        formatted = '{}.{}.1'.format(token.lemma_, token.pos_)
-        hyps = self.wordnet.synset(formatted)[0].hyponyms()
+        formatted = self.formatter(token)
+        hyps = self.wordnet.synset(formatted).hyponyms()
         answers = set()
         for hyp in hyps:
             for lem in hyp.lemmas():
@@ -117,11 +125,15 @@ class Analyser(object):
         return list(answers)
 
     def get_synonyms(self, token):
-        formatted = '{}.{}.1'.format(token.lemma_, token.pos_)
-        syns = self.wordnet.synsets(token)
+        formatted = self.formatter(token)
+        try:
+            syns = self.wordnet.synsets(token)
+        except TypeError:
+            # here try other formattings for synsets first...
+            return list()
         answers = set()
         for syn in syns:
-            for name in ss.lemma_names():
+            for name in syn.lemma_names():
                 answers.add(name)
         return list(answers)
 
