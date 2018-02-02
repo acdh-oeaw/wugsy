@@ -16,6 +16,7 @@ urlpatterns = [
     path(r'tour', views.TourPage.as_view(), name='tour'),
     path('questionnaire', include('questionnaire.urls')),
     path('stories', include('stories.urls')),
+    path('visual', include('visual.urls')),
     path('insights', include('insights.urls')),
     path('game', include('game.urls')),
     path('health', include('health.urls')),
