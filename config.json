@@ -1,0 +1,13 @@
+[
+  {
+    "Type" : "WSGI3",
+    "ID": "1234",
+    "LogDir" : "logs",
+    "Name" : "wugsy",
+    "ServerName" : "defc.eos.arz.oeaw.ac.at",
+    "DocumentRoot" : "defc-webapp",
+    "WSGIScriptAlias" : "src/wugsy/wsgi.py",
+    "PythonPath" : ["."],
+    "Aliases" : []
+  }
+]
