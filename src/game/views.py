@@ -22,17 +22,6 @@ def generate_data(request):
     assert _validator(out_data, PROVIDED)
     return JsonResponse(out_data)
 
-def _add_to_database(given_data, user):
-    """
-    Add information to the database
-    """
-    return True
-
-def _is_game_over(given_data, user):
-    """
-    Decide if the round of games is over or not
-    """
-    return False
 
 @api_view(['POST'])
 def game_result(request):
@@ -49,4 +38,18 @@ def game_result(request):
     if over:
         raise NotImplementedError('Not done yet')
     else:
-        return generate_data(request)
+        raise NotImplementedError(" error")
+    return generate_data(request)
+
+
+def _add_to_database(given_data, user):
+    """
+    Add information to the database
+    """
+    return True
+
+def _is_game_over(given_data, user):
+    """
+    Decide if the round of games is over or not
+    """
+    return False

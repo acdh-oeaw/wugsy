@@ -26,7 +26,7 @@ Then, point your web browser to `http:/localhost:8000/`.
 
 ### Running without Docker
 
-Docker is the preferred way to do development, because we can all be more certain that we are running code in the same environment. It also simplifies deployment a log.
+Docker is the preferred way to do development, because we can all be more certain that we are running code in the same environment. It also simplifies deployment a lot.
 
 But, if you don't have or want to use Docker, there is still hope. If this is you, please work from within a Python 3 [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/). Then, do something like:
 

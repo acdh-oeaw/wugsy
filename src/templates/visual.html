@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}Visual page{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="visual" %}
+{% endblock %}
+
+<!-- Benefits of the Django application -->
+{% block container %}
+<div id="intro-visual" class="text-page">
+  <h1>On this page would go interesting user narratives and so on.</h1>
+</div>
+{% endblock container %}

@@ -1,5 +1,5 @@
-Django==1.11.3
-django-environ>=0.4.3
+Django==2.0.1
+django-environ
 django-braces>=1.11.0
 django-crispy-forms>=1.6.1
 django-admin-bootstrapped>=2.5.7
@@ -8,3 +8,7 @@ easy-thumbnails>=2.4.1
 djangorestframework
 psycopg2
 mysqlclient
+SPARQLWrapper
+chardet
+idna
+urllib3
