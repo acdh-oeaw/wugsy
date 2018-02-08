@@ -105,20 +105,22 @@
 
     {% block container %}
     <div class="container">
-
       <div class="starter-template">
+          <div id="debugger">asdf</div>
         <h1>Game view</h1>
           {% if not user.is_authenticated %}
-            <h2>Game for random user</h2>
+            <h2>Games for random user</h2>
           {% else %}
-            <h2>Game for logged in user: {{user.get_full_name}}</h2>
+            <h2>Games for logged in user: {{user.get_full_name}}</h2>
           {% endif %}
           <form id="get-game" action = "{% url 'generate_data' %}" method = "post">{% csrf_token %}
-              <input type="submit" name="submit" value="Generate game" />
+              <input type="submit" name="game00" value="Play Game00" />
+              <input type="submit" name="game10" value="Play Game01" />
           </form>
       </div>
+      <hr>
     <div id="game-space"></div>
-    <div id="json-space">JSON for a game will appear here</div>
+    <!-- <div id="json-space">JSON for a game will appear here</div> -->
 
     </div><!-- /.container -->
     {% endblock container %}
@@ -158,8 +160,8 @@
             type:'post',
             data:$('#get-game').serialize(),
             success:function(e){
-              console.log('Below is validated game JSON, which should be interpretable')
-              console.log(e);
+              //console.log('Below is validated game JSON, which should be interpretable')
+              //console.log(e);
               // now, you can call the code that builds and inserts a game
               buildGame(e)
               // here, have the json on screen :)
