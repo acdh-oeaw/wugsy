@@ -19,7 +19,7 @@ Player gets points for:
 
 ### Playing field before player starts to interact
 
-1. 25 cards (here shown in blue) with specific food terms on them (=apple but not fruit)
+1. 25 cards with terms on them (=apple but not fruit)
 ( +-5 of these displayed cards contain “wrong” answers (e.g wood) to control the
  behavior of the user)
 and
