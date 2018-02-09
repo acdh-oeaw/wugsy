@@ -13,22 +13,6 @@ from rest_framework.decorators import api_view
 class QuestionnairePage(generic.TemplateView):
     template_name = "questionnaire.html"
 
-class CreateView(generics.ListCreateAPIView):
-
-    """This class defines the create behavior of our rest api."""
-    template_name = "questionnaire.html"
-    queryset = Questionlist.objects.all()
-    serializer_class = QuestionlistSerializer
-
-    def perform_create(self, serializer):
-        """Save the post data when creating a new bucketlist."""
-        serializer.save()
-class DetailsView(generics.RetrieveUpdateDestroyAPIView):
-    """This class handles the http GET, PUT and DELETE requests."""
-    template_name = "questionnaire.html"
-
-    queryset = Questionlist.objects.all()
-    serializer_class = QuestionlistSerializer
 
 class QuestionnaireView(APIView):
     def get(self, request):
