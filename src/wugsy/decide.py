@@ -46,7 +46,7 @@ class DecideGame(object):
 
     def _get_cards(self):
         out = list()
-        cards_for_games = {0: 10}
+        cards_for_games = {0:8}
         for i in range(0, cards_for_games.get(self._type, 16)):
             out.append(dict(id=i,
                             colour='#ffffff',

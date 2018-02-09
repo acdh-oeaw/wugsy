@@ -18,7 +18,7 @@
 
     <!-- Custom styles for this site -->
     {% block styles %}
-    <script src="{% static 'site/js/jquery-3.2.1.min.js' %}"></script>
+    <!-- <script src="{% static 'site/js/jquery-3.2.1.min.js' %}"></script> -->
     <link href="{% static 'site/css/main.css' %}" rel="stylesheet">
     {% endblock styles %}
 
@@ -106,7 +106,7 @@
     {% block container %}
     <div class="container">
       <div class="starter-template">
-          <div id="debugger">asdf</div>
+          <!-- <div id="debugger">asdf</div> -->
         <h1>Game view</h1>
           {% if not user.is_authenticated %}
             <h2>Games for random user</h2>
@@ -148,7 +148,8 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="{% static 'site/js/libs/jquery.connections.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'site/js/game.js' %}"></script>
     {% block scripts %}
@@ -165,9 +166,9 @@
               // now, you can call the code that builds and inserts a game
               buildGame(e)
               // here, have the json on screen :)
-              var jsonData = '<code align="left">' + JSON.stringify(e, null, 4) + '</code>'
-              jsonData = jsonData.replace(/\n/g, '<br>');
-              $("#json-space").html(jsonData);
+              //var jsonData = '<code align="left">' + JSON.stringify(e, null, 4) + '</code>'
+              //jsonData = jsonData.replace(/\n/g, '<br>');
+              //$("#json-space").html(jsonData);
             }
         });
     });

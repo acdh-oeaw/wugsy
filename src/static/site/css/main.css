@@ -5,15 +5,15 @@ html, body{
 }
 
 .starter-template {
-  padding: 40px 15px;
-  text-align: center;
+    padding: 40px 15px;
+    text-align: center;
 }
 
 .footer {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  margin-top: 40px;
-  border-top: 1px solid #eee;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-top: 40px;
+    border-top: 1px solid #eee;
 }
 
 .alert {
@@ -68,7 +68,7 @@ body>.navbar-transparent {
 /* Home page styling */
 .corporate-jumbo {
     background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0)),
-      url("/static/site/img/banner.jpg");
+    url("/static/site/img/banner.jpg");
     background-repeat: no-repeat;
     background-position: 80% center;
     background-attachment: fixed;
@@ -151,31 +151,31 @@ body>.navbar-transparent {
 /* Authentication forms */
 .form-box form,
 .form-box .form-message {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
 }
 
 .form-box form .checkbox {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .form-box form .checkbox {
-  font-weight: normal;
+    font-weight: normal;
 }
 
 .form-box form .form-control {
-  position: relative;
-  height: auto;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 10px;
-  font-size: 16px;
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
 }
 
 .form-box form .form-control:focus {
-  z-index: 2;
+    z-index: 2;
 }
 
 /* Game Styles */
@@ -183,12 +183,12 @@ body>.navbar-transparent {
 #game-space {
     text-align: center;
     -webkit-touch-callout: none; /* iOS Safari */
-      -webkit-user-select: none; /* Safari */
-       -khtml-user-select: none; /* Konqueror HTML */
-         -moz-user-select: none; /* Firefox */
-          -ms-user-select: none; /* Internet Explorer/Edge */
-              user-select: none; /* Non-prefixed version, currently
-                                    supported by Chrome and Opera */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+    supported by Chrome and Opera */
 }
 
 #intro {
@@ -202,8 +202,11 @@ body>.navbar-transparent {
 }
 
 #button-start {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     border: 1px solid gray;
-    border-bottom: 3px solid gray;
+    /* border-bottom: 3px solid gray; */
     border-radius: 5px;
     padding: 10px 20px;
     margin: 18px auto;
@@ -214,8 +217,11 @@ body>.navbar-transparent {
 /* Game00 */
 
 #button-restart.game00 {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     border: 1px solid gray;
-    border-bottom: 3px solid gray;
+    /* border-bottom: 3px solid gray; */
     border-radius: 5px;
     padding: 10px 20px;
     margin: 18px auto;
@@ -224,8 +230,11 @@ body>.navbar-transparent {
 }
 
 #button-next.game00 {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     border: 1px solid gray;
-    border-bottom: 3px solid gray;
+    /* border-bottom: 3px solid gray; */
     border-radius: 5px;
     padding: 10px 20px;
     margin: 18px auto;
@@ -235,7 +244,7 @@ body>.navbar-transparent {
 
 .div-button {
     border: 1px solid gray;
-    border-bottom: 3px solid gray;
+    /* border-bottom: 3px solid gray; */
     border-radius: 5px;
     padding: 10px 20px;
     margin: 18px auto;
@@ -245,7 +254,6 @@ body>.navbar-transparent {
 .div-button:hover {
     cursor: pointer;
     border-bottom: 1px solid gray!important;
-    margin-bottom: 2px;
 }
 
 #cards-space.game00 {
@@ -261,13 +269,17 @@ body>.navbar-transparent {
 }
 
 .card {
-    width: 22%;
-    margin: 4px 1%;
+    background: white;
+    width: 15%;
+    min-height: 80px;
+    margin: 8px 3%;
     border: 1px solid gray;
     border-radius: 5px;
     padding: 4px;
     display: inline-block;
     vertical-align: top;
+    z-index: 0;
+    opacity: .85;
 }
 .card:hover {
     cursor: pointer;
@@ -275,14 +287,17 @@ body>.navbar-transparent {
 
 .card.marked-term-r1 {
     background: gray;
+    border-width: 3px;
+    opacity: 1;
 }
 
-.card.marked-term-r1.one {background: yellow;!important}
-.card.marked-term-r1.two {background: green;!important}
-.card.marked-term-r1.three {background: red;!important}
+.card.one {background: #ffebba;!important}
+.card.two {background: #6dc9c9;!important}
+.card.three {background: #ffb2b2;!important}
 
 .card.marked-term-r2 {
     border: 3px solid black;
+    padding: 1px;
 }
 
 #box-concept.game00 {
@@ -299,5 +314,5 @@ body>.navbar-transparent {
 #debugger {
     position: relative;
     padding-top: 40px;
-    border: 1px solid red;
+    border: 1px solid #ffb2b2;
 }

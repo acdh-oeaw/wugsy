@@ -98,23 +98,23 @@ function setUpGame00Screen01(game){ // Cards space + R1 mechanics
     game.selectedCardsR1 = [];
     $('.card.game00').click(function(){
 
-            var selectedIndex = parseInt($(this).attr('id').replace('card-item-',''));
-            var index = game.selectedCardsR1.indexOf(selectedIndex);
-            if (index !== -1) {
-                $(this).removeClass("marked-term-r1");
-                $(this).removeClass("one");$(this).removeClass("two");$(this).removeClass("three");
-                game.selectedCardsR1.splice(index, 1);
+        var selectedIndex = parseInt($(this).attr('id').replace('card-item-',''));
+        var index = game.selectedCardsR1.indexOf(selectedIndex);
+        if (index !== -1) {
+            $(this).removeClass("marked-term-r1");
+            $(this).removeClass("one");$(this).removeClass("two");$(this).removeClass("three");
+            game.selectedCardsR1.splice(index, 1);
+        }
+        else{
+            // Only the THREE most meaninguful words related to the concept
+            if(game.selectedCardsR1.length < 3){
+                $(this).addClass("marked-term-r1");
+                if($(".one").length == 0){$(this).addClass("one");}
+                else if($(".two").length == 0){$(this).addClass("two");}
+                else if($(".three").length == 0){$(this).addClass("three");}
+                game.selectedCardsR1.push(selectedIndex);
             }
-            else{
-                // Only the THREE most meaninguful words related to the concept
-                if(game.selectedCardsR1.length < 3){
-                    $(this).addClass("marked-term-r1");
-                    if($(".one").length == 0){$(this).addClass("one");}
-                    else if($(".two").length == 0){$(this).addClass("two");}
-                    else if($(".three").length == 0){$(this).addClass("three");}
-                    game.selectedCardsR1.push(selectedIndex);
-                }
-            }
+        }
     });
 }
 
@@ -163,7 +163,7 @@ function setUpGame00Screen03(game){ // Cards for R2 + R2 mechanics
 
     // Reset card behavior prior to start
     game.lastSelectedIndex = -1;
-$(".card.game00").unbind("click");
+    $(".card.game00").unbind("click");
 
     game.linksR1R2 = [];
 
@@ -203,23 +203,110 @@ $(".card.game00").unbind("click");
                 // If a link already exists, we remove it
                 console.log("Link REMOVED between "+game.linksR1R2[atIndex][0]+" and "+game.linksR1R2[atIndex][1])
                 game.linksR1R2.splice(atIndex, 1);
+
+                // Links always feature the lower index first
+                if(selectedIndex<game.lastSelectedIndex){
+                    $("connection-"+selectedIndex+"-"+game.lastSelectedIndex).remove();
+                }
+                else{
+                    $("connection-"+game.lastSelectedIndex+"-"+selectedIndex).remove();
+                }
                 game.lastSelectedIndex = -1;
-                // handle un-drawing of link here or whatever
             }
             else{
-                // If a link doesn't exist, we create it
-                game.linksR1R2.push([selectedIndex,game.lastSelectedIndex]);
-                console.log("Link CREATED between "+selectedIndex+" and "+game.lastSelectedIndex)
+                // If a link doesn't exist, we create it (only if one card was marked in R1)
+                console.log(game.selectedCardsR1)
+                if(game.selectedCardsR1.indexOf(selectedIndex) !== -1 ||
+                game.selectedCardsR1.indexOf(game.lastSelectedIndex) !== -1){
+                    var connectionTag = "";
+                    // Links always feature the lower index first
+                    if(selectedIndex<game.lastSelectedIndex){
+                        game.linksR1R2.push([selectedIndex,game.lastSelectedIndex]);
+                        connectionTag = "connection-"+selectedIndex+"-"+game.lastSelectedIndex;
+                    }
+                    else{
+                        game.linksR1R2.push([game.lastSelectedIndex,selectedIndex]);
+                        connectionTag = "connection-"+game.lastSelectedIndex+"-"+selectedIndex;
+                    }
+                    console.log("Link CREATED between "+selectedIndex+" and "+game.lastSelectedIndex)
+
+                    $('#card-item-'+game.lastSelectedIndex).connections({
+                        to:'#card-item-'+selectedIndex,
+                        within:'#cards-space.game00',
+                        tag:connectionTag,
+                        css: {
+                            "z-index": 5,
+                            "pointer-events": "none",
+                            "opacity": 0.5,
+                            "border-radius": "0px",
+                            "border": function(){
+                                if(game.selectedCardsR1.indexOf(selectedIndex) !== -1 &&
+                                game.selectedCardsR1.indexOf(game.lastSelectedIndex) !== -1){
+                                    // two cards from R1, gray "shared" link
+                                    return "3px solid gray";
+                                }
+                                else if($('#card-item-'+game.lastSelectedIndex).attr("class").indexOf("one") !== -1 ||
+                                $('#card-item-'+selectedIndex).attr("class").indexOf("one") !== -1){
+                                    return "3px solid #ffebba";
+                                }
+                                else if($('#card-item-'+game.lastSelectedIndex).attr("class").indexOf("two") !== -1 ||
+                                $('#card-item-'+selectedIndex).attr("class").indexOf("two") !== -1){
+                                    return "3px solid #6dc9c9";
+                                }
+                                else if($('#card-item-'+game.lastSelectedIndex).attr("class").indexOf("three") !== -1 ||
+                                $('#card-item-'+selectedIndex).attr("class").indexOf("three") !== -1){
+                                    return "3px solid #ffb2b2";
+                                }
+                            },
+                            "border-width": "6px"
+                        }
+                    });
+
+                    // If the selected card is not from R1, we change its background,
+                    // only if we are not linking two R1 cards
+                    if(game.selectedCardsR1.indexOf(selectedIndex) !== -1 &&
+                    game.selectedCardsR1.indexOf(game.lastSelectedIndex) !== -1){
+                        // two cards from R1, do nothing
+                    }
+                    else{
+                        if(game.selectedCardsR1.indexOf(selectedIndex) !== -1){
+                            $('#card-item-'+game.lastSelectedIndex).removeClass("one");
+                            $('#card-item-'+game.lastSelectedIndex).removeClass("two");
+                            $('#card-item-'+game.lastSelectedIndex).removeClass("three");
+                            if($('#card-item-'+selectedIndex).attr("class").indexOf("one") !== -1){
+                                $('#card-item-'+game.lastSelectedIndex).addClass("one");
+                            }
+                            if($('#card-item-'+selectedIndex).attr("class").indexOf("two") !== -1){
+                                $('#card-item-'+game.lastSelectedIndex).addClass("two");
+                            }
+                            if($('#card-item-'+selectedIndex).attr("class").indexOf("three") !== -1){
+                                $('#card-item-'+game.lastSelectedIndex).addClass("three");
+                            }
+                        }
+                        else{
+                            $('#card-item-'+selectedIndex).removeClass("one");
+                            $('#card-item-'+selectedIndex).removeClass("two");
+                            $('#card-item-'+selectedIndex).removeClass("three");
+                            if($('#card-item-'+game.lastSelectedIndex).attr("class").indexOf("one") !== -1){
+                                $('#card-item-'+selectedIndex).addClass("one");
+                            }
+                            if($('#card-item-'+game.lastSelectedIndex).attr("class").indexOf("two") !== -1){
+                                $('#card-item-'+selectedIndex).addClass("two");
+                            }
+                            if($('#card-item-'+game.lastSelectedIndex).attr("class").indexOf("three") !== -1){
+                                $('#card-item-'+selectedIndex).addClass("three");
+                            }
+                        }
+                    }
+                }
+                else{
+                    console.log("Link NOT CREATED (no R1 card was picked)")
+                    game.lastSelectedIndex = -1;
+                }
                 game.lastSelectedIndex = -1;
-                // handle drawing of link here or whatever
             }
 
             $(".marked-term-r2").removeClass("marked-term-r2");
-        }
-
-        $("#debugger").html("");
-        for(var i=0; i<game.linksR1R2.length; i++){
-            $("#debugger").append(game.linksR1R2[i][0]+"-"+game.linksR1R2[i][1]+"<br>");
         }
     });
 }
@@ -243,26 +330,22 @@ function setUpGame00Screen04(game){ // Final screen (summary) + Restart
     $("#button-next.game00").click(function() {
         // restart with new set of cards and new related concept
     });
-}
 
-function clearGameSpace(game_type,game_screen){
-
-    if(game_type == 0){
-
-        if(game_screen == 0){
-            $("#button-start").unbind("click");
-            $('#game-space').html("");
-        }
-        else if(game_screen == 1){
-            $("#button-start").unbind("click");
-            $('#game-space').html("");
-        }
-        else if(game_screen == 2){
-            $('#game-space').html("");
-        }
-    }
-    else if(game_type == 1){
-
+    // Change the connection weight to reflect other people results
+    for(var i=0; i<game.linksR1R2.length; i++){
+        var borderwidth = $("connection-"+game.linksR1R2[i][0]+"-"+game.linksR1R2[i][1]).css("border-width");
+        $("connection-"+game.linksR1R2[i][0]+"-"+game.linksR1R2[i][1]).css("border-width",function(){
+            var widthParts = borderwidth.split(" ");
+            var newWidth = Math.floor(Math.random()*16)+1+"px";
+            var newWidthString = "";
+            for(var j=0; j<widthParts.length; j++){
+                if(widthParts[j].indexOf("0px") == -1){widthParts[j] = newWidth;}
+                newWidthString += widthParts[j];
+                if(j!=widthParts.length-1){newWidthString+=" ";}
+            }
+            return newWidthString;
+        });
+        $("connection-"+game.linksR1R2[i][0]+"-"+game.linksR1R2[i][1]).css("z-index","-1");
     }
 }
 
