@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}XML dictionary{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="dictionary" %}
+{% endblock %}
+
+{% block container %}
+<div id="intro-stories" class="text-page">
+  <h1>A space for exploring the XML database as dictionary.</h1>
+</div>
+{% endblock container %}
