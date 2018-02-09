@@ -20,6 +20,7 @@ urlpatterns = [
     path('insights', include('insights.urls')),
     path('game', include('game.urls')),
     path('health', include('health.urls')),
+    path('dictionary', include('dictionary.urls')),
     path(r'', include(accounts.urls, namespace='accounts')),
     path(r'admin', admin.site.urls),
     path(r'about', views.AboutPage.as_view(), name='about'),
