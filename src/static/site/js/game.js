@@ -18,10 +18,7 @@ function Game00(gameData) {
     setUpGame00(this.gameData);
 }
 
-function setUpGame00(game,restart){
-
-    //$('#game-space').html('<h3>Game 00: "' + gameData['game_title'] + '" here?</h3>');
-    //clearGameSpace(0,0);
+function setUpGame00(game){
 
     $('#game-space').html("");
     setUpGame00Screen00(game);
@@ -43,10 +40,6 @@ function setUpGame00Screen00(game){ // Rules of Game00 + Start R1
         html += '<div id="game00-field"></div>';
         return html;
     });
-
-    // if(restart){
-    //     setUpGame00Screen01(game);
-    // }
 
     $("#button-start.game00").unbind("click");
     $("#button-start.game00").click(function() {
@@ -74,7 +67,7 @@ function setUpGame00Screen01(game){ // Cards space + R1 mechanics
     // Restart Game = New Cards/Concept
     $("#button-restart.game00").unbind("click");
     $("#button-restart.game00").click(function() {
-        // ask for new set of cards
+        restartGame00();
     });
 
     // Go to Round 2
@@ -328,7 +321,7 @@ function setUpGame00Screen04(game){ // Final screen (summary) + Restart
     $("#button-next.game00").unbind("click");
     $("#button-next.game00").html("Restart");
     $("#button-next.game00").click(function() {
-        // restart with new set of cards and new related concept
+        restartGame00();
     });
 
     // Change the connection weight to reflect other people results
@@ -347,6 +340,25 @@ function setUpGame00Screen04(game){ // Final screen (summary) + Restart
         });
         $("connection-"+game.linksR1R2[i][0]+"-"+game.linksR1R2[i][1]).css("z-index","-1");
     }
+}
+
+function restartGame00(){
+    console.log("restarting")
+    $.ajax({
+        url:'gamegenerate_data/',
+        type:'post',
+        data:$('#get-game').serialize(),
+        success:function(e){
+          //console.log('Below is validated game JSON, which should be interpretable')
+          //console.log(e);
+          // now, you can call the code that builds and inserts a game
+          buildGame(e)
+          // here, have the json on screen :)
+          //var jsonData = '<code align="left">' + JSON.stringify(e, null, 4) + '</code>'
+          //jsonData = jsonData.replace(/\n/g, '<br>');
+          //$("#json-space").html(jsonData);
+        }
+    });
 }
 
 
