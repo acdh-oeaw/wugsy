@@ -316,3 +316,32 @@ body>.navbar-transparent {
     padding-top: 40px;
     border: 1px solid #ffb2b2;
 }
+
+#timer {
+    display: block;
+    margin: 10px auto;
+    margin-bottom: 20px;
+    padding: 6px 14px;
+    border: 0px;
+    border-radius: 5px;
+    background: #818181;
+    max-width: 100px;
+    font-weight: 600;
+    color: #5d5d5d;
+    font-size: .9em;
+
+    -webkit-transition: all 100ms linear;
+    -ms-transition: all 100ms linear;
+    transition: all 100ms linear;
+}
+#timer.timeout {
+    background: #ab4b4b!important;
+    color: white!important;
+}
+#timer.running {
+    background: #4bab78!important;
+    color: white;
+}
+#timer.white {
+    background: white!important;
+}

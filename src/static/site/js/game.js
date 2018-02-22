@@ -3,6 +3,33 @@ function pad(n) {
     return (n < 10) ? ("0" + n) : n;
 }
 
+function setTheTimer(game){
+    $('#timer.game00').html(game.counter);
+    $("#timer.game00").addClass("running");
+    game.interval = setInterval(function() {
+        game.counter--;
+        $("#timer.game00").html(game.counter);
+        if (game.counter <= 0) {
+            $("#timer.game00").html("Time out!");
+            $("#timer.game00").removeClass("running");
+            $("#timer.game00").addClass("timeout");
+            $(".card.game00").unbind("click"); // No more card clicks allowed!
+        }
+    }, 1000);
+}
+
+function startTimer(game){
+    game.counter = 10;
+    $('#timer.game00').html(game.counter);
+    if(game.interval != undefined) clearInterval(game.interval);
+    setTheTimer(game);
+}
+
+function clearTimer(game){
+    clearInterval(game.interval);
+    $("#timer.game00").addClass("white");
+}
+
 // an abstract game class you can inherit from
 function BaseGame() {
     this.height = 100;
@@ -21,6 +48,7 @@ function Game00(gameData) {
 function setUpGame00(game){
 
     $('#game-space').html("");
+    game.counter = 10; game.interval = undefined;
     setUpGame00Screen00(game);
 }
 
@@ -57,7 +85,9 @@ function setUpGame00Screen01(game){ // Cards space + R1 mechanics
     });
     $('#game00-field').html(function(){
         var html = '';
-        html += '<div id="cards-space" class="game00"></div>';
+        html += '<div id="cards-space" class="game00">';
+        html += '<div id="timer" class="game00"></div>';
+        html += '</div>';
         html += '<div id="box-concept" class="game00">Marriage</div>';
         html += '<div id="button-restart" class="div-button game00">Restart</div>';
         html += '<div id="button-next" class="div-button game00">Next Round</div>';
@@ -67,7 +97,7 @@ function setUpGame00Screen01(game){ // Cards space + R1 mechanics
     // Restart Game = New Cards/Concept
     $("#button-restart.game00").unbind("click");
     $("#button-restart.game00").click(function() {
-        restartGame00();
+        restartGame00(game);
     });
 
     // Go to Round 2
@@ -75,6 +105,9 @@ function setUpGame00Screen01(game){ // Cards space + R1 mechanics
     $("#button-next.game00").click(function() {
         setUpGame00Screen02(game);
     });
+
+    // Start timer
+    startTimer(game);
 
     // Show cards
 
@@ -151,6 +184,9 @@ function setUpGame00Screen03(game){ // Cards for R2 + R2 mechanics
     });
 
     $('#game00-field').show(); // The field maintains the state of R1
+
+    // Start timer
+    startTimer(game);
 
     // Mark card logic
 
@@ -317,11 +353,12 @@ function setUpGame00Screen04(game){ // Final screen (summary) + Restart
         html += '<p>Some interesting comment here...</p>';
         return html;
     });
+    clearTimer(game);
 
     $("#button-next.game00").unbind("click");
     $("#button-next.game00").html("Restart");
     $("#button-next.game00").click(function() {
-        restartGame00();
+        restartGame00(game);
     });
 
     // Change the connection weight to reflect other people results
@@ -342,7 +379,7 @@ function setUpGame00Screen04(game){ // Final screen (summary) + Restart
     }
 }
 
-function restartGame00(){
+function restartGame00(game){
     console.log("restarting")
     $.ajax({
         url:'gamegenerate_data/',
