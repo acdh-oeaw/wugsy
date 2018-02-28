@@ -27,6 +27,7 @@ services:
     elasticsearch: 
         image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.2
         container_name: elasticsearch
+        hostname: elasticsearch
         environment:
             - cluster.name=exploreat
             - bootstrap.memory_lock=true
@@ -41,14 +42,20 @@ services:
             - esdata:/usr/share/elasticsearch/data
         networks:
             - esnet
+    kibana:
+        image: docker.elastic.co/kibana/kibana-oss:6.2.2
+        container_name: kibana
+        hostname: kibana
+        links:
+            - elasticsearch
+        ports:
+            - 5601:5601
+        networks:
+            - esnet
+
 volumes:
   esdata:
     driver: local
 
 networks:
     esnet:
-
-
-
-
-
