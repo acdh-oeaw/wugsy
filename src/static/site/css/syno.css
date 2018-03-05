@@ -1,0 +1,141 @@
+/***********************************
+                Graph
+**********************************/
+
+.links line {
+  stroke: #999;
+  stroke-opacity: 0.6;
+}
+
+.nodes circle {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+svg {
+  position: fixed;
+}
+
+/***********************************
+                Main Layout
+**********************************/
+
+#lemma-list {
+  min-width: 200px;
+  max-width: 300px;
+  float: left;
+  z-index: 100;
+}
+
+#main {
+  float: left;
+}
+
+#searchResults {
+  float: left;
+  position: fixed;
+  left: 1200;
+  z-index: 50;
+}
+
+#searchResults .leftcol {
+  float: left;
+}
+
+#searchResults .rightcol {
+  float: right;
+}
+
+
+#searchResults .foundLemma, #searchResults .foundRefs {
+  overflow: auto;
+  height: 800px;
+  width: 250px;
+}
+
+#searchResults h4 {
+  display: inline-block;
+}
+
+.navElements{
+  height:20px;
+}
+
+/***********************************
+            Links, Buttons
+**********************************/
+
+#connectNodes, #deleteNode, #showXML {
+  margin-left: 10px;
+  border: 1px black solid;
+  cursor: pointer;
+  padding: 5px;
+}
+
+#lemma-list a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#searchResults a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/***********************************
+    Navigation and style elements
+**********************************/
+
+#hoverinfo {
+  z-index: 200;
+  background: rgba(255, 255, 255, 1.0);
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.selected {
+  background-color: yellow;
+}
+
+/***********************************
+            Loading symbol
+https://www.w3schools.com/howto/howto_css_loader.asp
+**********************************/
+
+.loadercont {
+  width: 20px;
+  height: 20px;
+  display: none;
+}
+
+.loader {
+  display: block !important;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 20px;
+  height: 20px;
+  -webkit-animation: spin 2s linear infinite;
+  /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
