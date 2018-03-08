@@ -5,15 +5,15 @@ html, body{
 }
 
 .starter-template {
-  padding: 40px 15px;
-  text-align: center;
+    padding: 40px 15px;
+    text-align: center;
 }
 
 .footer {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  margin-top: 40px;
-  border-top: 1px solid #eee;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-top: 40px;
+    border-top: 1px solid #eee;
 }
 
 .alert {
@@ -68,7 +68,7 @@ body>.navbar-transparent {
 /* Home page styling */
 .corporate-jumbo {
     background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0)),
-      url("/static/site/img/banner.jpg");
+    url("/static/site/img/banner.jpg");
     background-repeat: no-repeat;
     background-position: 80% center;
     background-attachment: fixed;
@@ -151,29 +151,197 @@ body>.navbar-transparent {
 /* Authentication forms */
 .form-box form,
 .form-box .form-message {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
 }
 
 .form-box form .checkbox {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .form-box form .checkbox {
-  font-weight: normal;
+    font-weight: normal;
 }
 
 .form-box form .form-control {
-  position: relative;
-  height: auto;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 10px;
-  font-size: 16px;
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
 }
 
 .form-box form .form-control:focus {
-  z-index: 2;
+    z-index: 2;
+}
+
+/* Game Styles */
+
+#game-space {
+    text-align: center;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+    supported by Chrome and Opera */
+}
+
+#intro {
+    padding: 20px;
+    margin: 18px auto;
+    background: #fafafa;
+    border-radius: 5px;
+    position: relative;
+    display: inline-block;
+    font-weight: 500;
+}
+
+#button-start {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 1px solid gray;
+    /* border-bottom: 3px solid gray; */
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 18px auto;
+    position: relative;
+    display: inline-block;
+}
+
+/* Game00 */
+
+#button-restart.game00 {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 1px solid gray;
+    /* border-bottom: 3px solid gray; */
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 18px auto;
+    position: relative;
+    display: inline-block;
+}
+
+#button-next.game00 {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 1px solid gray;
+    /* border-bottom: 3px solid gray; */
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 18px auto;
+    position: relative;
+    display: inline-block;
+}
+
+.div-button {
+    border: 1px solid gray;
+    /* border-bottom: 3px solid gray; */
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 18px auto;
+    position: relative;
+    display: inline-block;
+}
+.div-button:hover {
+    cursor: pointer;
+    border-bottom: 1px solid gray!important;
+}
+
+#cards-space.game00 {
+    width: 80%;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    vertical-align: top;
+    text-align: center;
+}
+
+.card {
+    background: white;
+    width: 15%;
+    min-height: 80px;
+    margin: 8px 3%;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 4px;
+    display: inline-block;
+    vertical-align: top;
+    z-index: 0;
+    opacity: .85;
+}
+.card:hover {
+    cursor: pointer;
+}
+
+.card.marked-term-r1 {
+    background: gray;
+    border-width: 3px;
+    opacity: 1;
+}
+
+.card.one {background: #ffebba;!important}
+.card.two {background: #6dc9c9;!important}
+.card.three {background: #ffb2b2;!important}
+
+.card.marked-term-r2 {
+    border: 3px solid black;
+    padding: 1px;
+}
+
+#box-concept.game00 {
+    padding: 40px;
+    margin: 22px auto;
+    background: #f0f0f0;
+    border-radius: 5px;
+    position: relative;
+    display: block;
+    max-width: 200px;
+    font-weight: 500;
+}
+
+#debugger {
+    position: relative;
+    padding-top: 40px;
+    border: 1px solid #ffb2b2;
+}
+
+#timer {
+    display: block;
+    margin: 10px auto;
+    margin-bottom: 20px;
+    padding: 6px 14px;
+    border: 0px;
+    border-radius: 5px;
+    background: #818181;
+    max-width: 100px;
+    font-weight: 600;
+    color: #5d5d5d;
+    font-size: .9em;
+
+    -webkit-transition: all 100ms linear;
+    -ms-transition: all 100ms linear;
+    transition: all 100ms linear;
+}
+#timer.timeout {
+    background: #ab4b4b!important;
+    color: white!important;
+}
+#timer.running {
+    background: #4bab78!important;
+    color: white;
+}
+#timer.white {
+    background: white!important;
 }

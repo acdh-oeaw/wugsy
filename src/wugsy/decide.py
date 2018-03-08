@@ -1,10 +1,10 @@
 import random
 
 # just some data to test the system
-CARDS = ['apple',
+CARDS = ['Apple',
          'Banana',
-         'pear',
-         'orange',
+         'Pear',
+         'Orange',
          'a very long card that needs to look ok',
          'card\twith\ttabs',
          'ALL CAPS',
@@ -46,7 +46,7 @@ class DecideGame(object):
 
     def _get_cards(self):
         out = list()
-        cards_for_games = {0: 25}
+        cards_for_games = {0:8}
         for i in range(0, cards_for_games.get(self._type, 16)):
             out.append(dict(id=i,
                             colour='#ffffff',
