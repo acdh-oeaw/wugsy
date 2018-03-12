@@ -409,15 +409,188 @@ function restartGame00(game){
 function Game01(gameData) {
     BaseGame.call(this);
     this.gameData = gameData;
-    //console.log('Add game logic...')
-    $('#game-space').html('<h3>Game 01: "' + gameData['game_title'] + '" here?</h3>');
+    console.log(this.gameData)
+    setUpGame01(this.gameData);
 }
+
+function setUpGame01(game){
+
+    $('#game-space').html("");
+    setUpGame01Screen00(game);
+}
+
+function setUpGame01Screen00(game){ // Rules of Game01
+
+    $('#game-space').append(function(){
+        var html = '';
+        html += '<div id="game01-dashboard">';
+        html += '<div id="intro" class="game01">Welcome to Game01!</div>';
+        html += '<p>These are the rules of this game:</p>';
+        html += '<p>1. Bla bla</p>';
+        html += '<p>2. Bla bla</p>';
+        html += '<p>3. Bla bla</p>';
+        html += '<p>4. Bla bla</p>';
+        html += '<div id="button-start" class="div-button game01">Start!</div>';
+        html += '</div>';
+        html += '<div id="game01-field"></div>';
+        return html;
+    });
+
+    $("#button-start.game01").unbind("click");
+    $("#button-start.game01").click(function() {
+        setUpGame01Screen01(game)
+    });
+}
+
+function setUpGame01Screen01(game){ // Photo + Everything Else
+
+    //clearGameSpace(0,1);
+    $('#game01-dashboard').html(function(){
+        var html = '';
+        html += '<div id="intro" class="game01">Game01 - Round One!</div>';
+        return html;
+    });
+    $('#game01-field').html(function(){
+        var html = '';
+        html += '<div id="photo-space" class="game01">';
+        html += '<div id="photo-box" class="game01"><img src="/static/site/img/placeholder.png"/></div>';
+        html += '</div>';
+        html += '<div id="action-space" class="game01">';
+        html += '<div id="tab-space" class="game01">';
+        html += '<ul class="nav nav-tabs game01">';
+        html += '<li id="tab-paragraph" class="active"><a href="#">Paragraph</a></li>';
+        html += '<li id="tab-textbox"><a href="#">Textbox</a></li>';
+        html += '<li id="tab-visualization"><a href="#">Visualization</a></li>';
+        html += '</ul>';
+        html += '</div>';
+        html += '<div id="under-tab-space" class="game01">';
+        html += 'This is a paragraph.'
+        html += '</div>';
+        html += '</div>';
+        html += '<div id="button-submit" class="div-button game01">Submit</div>';
+        html += '<div class="clearfix"></div>';
+        html += '<div id="button-restart" class="div-button game01">Restart</div>';
+        return html;
+    });
+
+    // Restart Game = New Image
+    $("#button-restart.game01").unbind("click");
+    $("#button-restart.game01").click(function() {
+        restartGame01(game);
+    });
+
+    // Tabs handler
+    $('.nav-tabs.game01 li').click(function(e){
+
+        // Dont move screen to #
+        e.preventDefault();
+
+        $(".nav-tabs.game01 li").each(function(){
+                $(this).removeClass("active");
+        })
+        $(this).addClass("active");
+
+        if($(this).attr("id") == "tab-paragraph"){
+            $('#under-tab-space.game01').html(function(){
+                var html = "";
+                html += "This is a paragraph.";
+                return html;
+            });
+        }
+        else if($(this).attr("id") == "tab-textbox"){
+            $('#under-tab-space.game01').html(function(){
+                var html = "";
+                html += "A textbox should be here.";
+                return html;
+            });
+        }
+        else if($(this).attr("id") == "tab-visualization"){
+            $('#under-tab-space.game01').html(function(){
+                var html = "";
+                html += "Fancy visualization!";
+                return html;
+            });
+        }
+    });
+
+    // Submit handler
+    $("#button-submit.game01").unbind("click");
+    $("#button-submit.game01").click(function() {
+
+        if($(".nav-tabs.game01 li.active").attr("id") == "tab-paragraph"){
+            console.log("tab paragraph")
+        }
+        else if($(".nav-tabs.game01 li.active").attr("id") == "tab-textbox"){
+            console.log("tab textbox")
+        }
+        else if($(".nav-tabs.game01 li.active").attr("id") == "tab-visualization"){
+            console.log("tab visualization")
+        }
+    });
+
+    // Show whatever
+
+}
+
+function restartGame01(game){
+    console.log("restarting")
+    $.ajax({
+        url:'gamegenerate_data/',
+        type:'post',
+        data:$('#get-game').serialize(),
+        success:function(e){
+          //console.log('Below is validated game JSON, which should be interpretable')
+          //console.log(e);
+          // now, you can call the code that builds and inserts a game
+          e.game_type = 1; // YADA YADA FIX THIS HACK!
+          buildGame(e)
+          // here, have the json on screen :)
+          //var jsonData = '<code align="left">' + JSON.stringify(e, null, 4) + '</code>'
+          //jsonData = jsonData.replace(/\n/g, '<br>');
+          //$("#json-space").html(jsonData);
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Game00.prototype = Object.create(BaseGame.prototype);
 Game01.prototype = Object.create(BaseGame.prototype);
 
 // map game numbers to functions
-var games = {'00': Game00, '01': Game01}
+var games = {
+    '00': Game00,
+    '01': Game01
+}
 
 // main method: lookup correct js
 function buildGame(gameData) {
