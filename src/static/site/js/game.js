@@ -386,14 +386,14 @@ function restartGame00(game){
         type:'post',
         data:$('#get-game').serialize(),
         success:function(e){
-          //console.log('Below is validated game JSON, which should be interpretable')
-          //console.log(e);
-          // now, you can call the code that builds and inserts a game
-          buildGame(e)
-          // here, have the json on screen :)
-          //var jsonData = '<code align="left">' + JSON.stringify(e, null, 4) + '</code>'
-          //jsonData = jsonData.replace(/\n/g, '<br>');
-          //$("#json-space").html(jsonData);
+            //console.log('Below is validated game JSON, which should be interpretable')
+            //console.log(e);
+            // now, you can call the code that builds and inserts a game
+            buildGame(e)
+            // here, have the json on screen :)
+            //var jsonData = '<code align="left">' + JSON.stringify(e, null, 4) + '</code>'
+            //jsonData = jsonData.replace(/\n/g, '<br>');
+            //$("#json-space").html(jsonData);
         }
     });
 }
@@ -463,13 +463,90 @@ function setUpGame01Screen01(game){ // Photo + Everything Else
         html += '<li id="tab-visualization"><a href="#">Visualization</a></li>';
         html += '</ul>';
         html += '</div>';
-        html += '<div id="under-tab-space" class="game01">';
-        html += 'This is a paragraph.'
+        html += '<div id="under-tab-space-paragraph" class="game01"></div>';
+        html += '<div id="under-tab-space-textbox" class="game01"></div>';
+        html += '<div id="under-tab-space-visualization" class="game01"></div>';
+        html += '<div id="button-submit" class="div-button game01">Generate Viz</div>';
         html += '</div>';
-        html += '</div>';
-        html += '<div id="button-submit" class="div-button game01">Submit</div>';
         html += '<div class="clearfix"></div>';
         html += '<div id="button-restart" class="div-button game01">Restart</div>';
+        return html;
+    });
+
+    $('#under-tab-space-paragraph').show();
+    $('#under-tab-space-textbox').hide();
+    $('#under-tab-space-visualization').hide();
+
+    // Build the three tabs content
+    $("#under-tab-space-paragraph.game01").html(function(){
+        var html = '';
+        html += '<div id="paragraph-content" class="game01">';
+        html += 'In a village of La Mancha, the name of which I have no desire ';
+        html += 'to call to mind, there lived not long since one of those '
+        html += 'gentlemen that keep a lance in the lance-rack, an old buckler, ';
+        html += 'a lean hack, and a greyhound for coursing. An olla of rather ';
+        html += 'more beef than mutton, a salad on most nights, scraps on ';
+        html += 'Saturdays, lentils on Fridays, and a pigeon or so extra on ';
+        html += 'Sundays, made away with three-quarters of his income. The rest ';
+        html += 'of it went in a doublet of fine cloth and velvet breeches and ';
+        html += 'shoes to match for holidays, while on week-days he made a brave ';
+        html += 'figure in his best homespun. He had in his house a housekeeper ';
+        html += 'past forty, a niece under twenty, and a lad for the field and ';
+        html += 'market-place, who used to saddle the hack as well as handle the ';
+        html += 'bill-hook. The age of this gentleman of ours was bordering on ';
+        html += 'fifty; he was of a hardy habit, spare, gaunt-featured, a very ';
+        html += 'early riser and a great sportsman. They will have it his surname ';
+        html += 'was Quixada or Quesada (for here there is some difference of ';
+        html += 'opinion among the authors who write on the subject), although ';
+        html += 'from reasonable conjectures it seems plain that he was called ';
+        html += 'Quexana. This, however, is of but little importance to our ';
+        html += 'tale it will be enough not to stray a hair\'s breadth from the ';
+        html += 'truth in the telling of it.<br><br>You must know, then, that ';
+        html += 'the above-named gentleman whenever he was at leisure (which ';
+        html += 'was mostly all the year round) gave himself up to reading books ';
+        html += 'of chivalry with such ardour and avidity that he almost ';
+        html += 'entirely neglected the pursuit of his field-sports, and even ';
+        html += 'the management of his property; and to such a pitch did his ';
+        html += 'eagerness and infatuation go that he sold many an acre of ';
+        html += 'tillageland to buy books of chivalry to read, and brought home ';
+        html += 'as many of them as he could get. But of all there were none he ';
+        html += 'liked so well as those of the famous Feliciano de Silva\'s ';
+        html += 'composition, for their lucidity of style and complicated ';
+        html += 'conceits were as pearls in his sight, particularly when in his ';
+        html += 'reading he came upon courtships and cartels, where he often ';
+        html += 'found passages like "the reason of the unreason with which my ';
+        html += 'reason is afflicted so weakens my reason that with reason I ';
+        html += 'murmur at your beauty;" or again, "the high heavens, that of ';
+        html += 'your divinity divinely fortify you with the stars, render you ';
+        html += 'deserving of the desert your greatness deserves." Over conceits ';
+        html += 'of this sort the poor gentleman lost his wits, and used to lie ';
+        html += 'awake striving to understand them and worm the meaning out of ';
+        html += 'them; what Aristotle himself could not have made out or ';
+        html += 'extracted had he come to life again for that special purpose. ';
+        html += 'He was not at all easy about the wounds which Don Belianis gave ';
+        html += 'and took, because it seemed to him that, great as were the ';
+        html += 'surgeons who had cured him, he must have had his face and body ';
+        html += 'covered all over with seams and scars. He commended, however, ';
+        html += 'the author\'s way of ending his book with the promise of that ';
+        html += 'interminable adventure, and many a time was he tempted to take ';
+        html += 'up his pen and finish it properly as is there proposed, which ';
+        html += 'no doubt he would have done, and made a successful piece of ';
+        html += 'work of it too, had not greater and more absorbing thoughts ';
+        html += 'prevented him.';
+        html += '</div>';
+        return html;
+    });
+    $("#under-tab-space-textbox.game01").html(function(){
+        var html = '';
+        html += '<textarea id="textarea" class="game01">';
+        html += 'Type whatever you want in here!'
+        '</textarea>';
+        return html;
+    });
+    $("#under-tab-space-visualization.game01").html(function(){
+        var html = "";
+        html += 'Fancy visualization!';
+        html += '<div id="viz-box" class="game01">Viz will appear here</div>';
         return html;
     });
 
@@ -486,30 +563,24 @@ function setUpGame01Screen01(game){ // Photo + Everything Else
         e.preventDefault();
 
         $(".nav-tabs.game01 li").each(function(){
-                $(this).removeClass("active");
+            $(this).removeClass("active");
         })
         $(this).addClass("active");
 
         if($(this).attr("id") == "tab-paragraph"){
-            $('#under-tab-space.game01').html(function(){
-                var html = "";
-                html += "This is a paragraph.";
-                return html;
-            });
+            $('#under-tab-space-paragraph').show();
+            $('#under-tab-space-textbox').hide();
+            $('#under-tab-space-visualization').hide();
         }
         else if($(this).attr("id") == "tab-textbox"){
-            $('#under-tab-space.game01').html(function(){
-                var html = "";
-                html += "A textbox should be here.";
-                return html;
-            });
+            $('#under-tab-space-paragraph').hide();
+            $('#under-tab-space-textbox').show();
+            $('#under-tab-space-visualization').hide();
         }
         else if($(this).attr("id") == "tab-visualization"){
-            $('#under-tab-space.game01').html(function(){
-                var html = "";
-                html += "Fancy visualization!";
-                return html;
-            });
+            $('#under-tab-space-paragraph').hide();
+            $('#under-tab-space-textbox').hide();
+            $('#under-tab-space-visualization').show();
         }
     });
 
@@ -517,15 +588,26 @@ function setUpGame01Screen01(game){ // Photo + Everything Else
     $("#button-submit.game01").unbind("click");
     $("#button-submit.game01").click(function() {
 
+        $('#under-tab-space-paragraph').hide();
+        $('#under-tab-space-textbox').hide();
+        $('#under-tab-space-visualization').show();
+
+        // Handle visualization generation
         if($(".nav-tabs.game01 li.active").attr("id") == "tab-paragraph"){
-            console.log("tab paragraph")
+            drawWordCloud($("#paragraph-content.game01").html());
         }
         else if($(".nav-tabs.game01 li.active").attr("id") == "tab-textbox"){
-            console.log("tab textbox")
+            drawWordCloud($("#textarea.game01").val());
         }
         else if($(".nav-tabs.game01 li.active").attr("id") == "tab-visualization"){
-            console.log("tab visualization")
+            drawWordCloud($("#paragraph-content.game01").html());
         }
+
+        // Post submit-click handling (right now always show the visualization)
+        $(".nav-tabs.game01 li").each(function(){
+            $(this).removeClass("active");
+        })
+        $('#tab-visualization').addClass("active");
     });
 
     // Show whatever
@@ -539,17 +621,88 @@ function restartGame01(game){
         type:'post',
         data:$('#get-game').serialize(),
         success:function(e){
-          //console.log('Below is validated game JSON, which should be interpretable')
-          //console.log(e);
-          // now, you can call the code that builds and inserts a game
-          e.game_type = 1; // YADA YADA FIX THIS HACK!
-          buildGame(e)
-          // here, have the json on screen :)
-          //var jsonData = '<code align="left">' + JSON.stringify(e, null, 4) + '</code>'
-          //jsonData = jsonData.replace(/\n/g, '<br>');
-          //$("#json-space").html(jsonData);
+            //console.log('Below is validated game JSON, which should be interpretable')
+            //console.log(e);
+            // now, you can call the code that builds and inserts a game
+            e.game_type = 1; // YADA YADA FIX THIS HACK!
+            buildGame(e)
+            // here, have the json on screen :)
+            //var jsonData = '<code align="left">' + JSON.stringify(e, null, 4) + '</code>'
+            //jsonData = jsonData.replace(/\n/g, '<br>');
+            //$("#json-space").html(jsonData);
         }
     });
+}
+
+function drawWordCloud(text_string){
+
+    $('#viz-box.game01').html("");
+
+    var common = "poop,i,me,my,myself,we,us,our,ours,ourselves,you,your,yours,yourself,yourselves,he,him,his,himself,she,her,hers,herself,it,its,itself,they,them,their,theirs,themselves,what,which,who,whom,whose,this,that,these,those,am,is,are,was,were,be,been,being,have,has,had,having,do,does,did,doing,will,would,should,can,could,ought,i'm,you're,he's,she's,it's,we're,they're,i've,you've,we've,they've,i'd,you'd,he'd,she'd,we'd,they'd,i'll,you'll,he'll,she'll,we'll,they'll,isn't,aren't,wasn't,weren't,hasn't,haven't,hadn't,doesn't,don't,didn't,won't,wouldn't,shan't,shouldn't,can't,cannot,couldn't,mustn't,let's,that's,who's,what's,here's,there's,when's,where's,why's,how's,a,an,the,and,but,if,or,because,as,until,while,of,at,by,for,with,about,against,between,into,through,during,before,after,above,below,to,from,up,upon,down,in,out,on,off,over,under,again,further,then,once,here,there,when,where,why,how,all,any,both,each,few,more,most,other,some,such,no,nor,not,only,own,same,so,than,too,very,say,says,said,shall";
+
+    var word_count = {};
+
+    var words = text_string.split(/[ '\-\(\)\*":;\[\]|{},.!?]+/);
+    if (words.length == 1){
+        word_count[words[0]] = 1;
+    } else {
+        words.forEach(function(word){
+            var word = word.toLowerCase();
+            if (word != "" && common.indexOf(word)==-1 && word.length>1){
+                if (word_count[word]){
+                    word_count[word]++;
+                } else {
+                    word_count[word] = 1;
+                }
+            }
+        })
+    }
+
+    var svg_location = "#viz-box.game01";
+    var width = $('#viz-box.game01').width();
+    var height = $('#viz-box.game01').height();
+
+    var fill = d3.scale.category20();
+
+    var word_entries = d3.entries(word_count);
+
+    var xScale = d3.scale.linear()
+    .domain([0, d3.max(word_entries, function(d) {
+        return d.value;
+    })
+])
+.range([10,100]);
+
+d3.layout.cloud().size([width, height])
+.timeInterval(20)
+.words(word_entries)
+.fontSize(function(d) { return xScale(+d.value); })
+.text(function(d) { return d.key; })
+.rotate(function() { return ~~(Math.random() * 2) * 90; })
+.font("Impact")
+.on("end", draw)
+.start();
+
+function draw(words) {
+    d3.select(svg_location).append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(" + [width >> 1, height >> 1] + ")")
+    .selectAll("text")
+    .data(words)
+    .enter().append("text")
+    .style("font-size", function(d) { return xScale(d.value) + "px"; })
+    .style("font-family", "Impact")
+    .style("fill", function(d, i) { return fill(i); })
+    .attr("text-anchor", "middle")
+    .attr("transform", function(d) {
+        return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+    })
+    .text(function(d) { return d.key; });
+}
+
+d3.layout.cloud().stop();
 }
 
 
