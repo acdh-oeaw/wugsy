@@ -1,0 +1,41 @@
+<head>
+  <script src="/Javascript/d3.js"></script>
+  <script src="/Javascript/jquery-3.3.1.js"></script>
+  <script src="/Javascript/elasticsearch-js/elasticsearch.jquery.js"></script>
+  <link rel="stylesheet" href="/CSS/syno.css">
+</head>
+
+<body>
+  <div id="lemma-list">
+    <div class="loadercont"></div>
+    <ul></ul>
+  </div>
+  <div id="main">
+    <div class="loadercont"></div>
+    <svg width="1000" height="800"></svg>
+  </div>
+  <div id="searchResults">
+    <h4>Search Results</h4>
+
+    <div class="navElements">
+      <a id="connectNodes" onclick="connectNodes();">Add Selected Node</a>
+      <a id="deleteNode" onclick="switchDeleteMode();">Delete Nodes</a>
+      <a id="showXML" onclick="showXML('');">Show XML</a>
+    </div>
+
+    <div class="leftcol">
+      <h6>Entries:</h6>
+      <div class="loadercont"></div>
+      <ul class="foundLemma"></ul>
+    </div>
+
+    <div class="rightcol">
+      <h6>References:</h6>
+      <div class="loadercont"></div>
+      <ul class="foundRefs"></ul>
+    </div>
+
+  </div>
+  <span id="hoverinfo" style="display: none">No Info</span>
+  <script src="/Javascript/syno.js"></script>
+</body>
