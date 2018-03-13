@@ -380,20 +380,14 @@ function setUpGame00Screen04(game){ // Final screen (summary) + Restart
 }
 
 function restartGame00(game){
-    console.log("restarting")
+    clearTimer(game);
     $.ajax({
         url:'gamegenerate_data/',
         type:'post',
         data:$('#get-game').serialize(),
         success:function(e){
-            //console.log('Below is validated game JSON, which should be interpretable')
-            //console.log(e);
-            // now, you can call the code that builds and inserts a game
+            e.game_type = 0;
             buildGame(e)
-            // here, have the json on screen :)
-            //var jsonData = '<code align="left">' + JSON.stringify(e, null, 4) + '</code>'
-            //jsonData = jsonData.replace(/\n/g, '<br>');
-            //$("#json-space").html(jsonData);
         }
     });
 }
@@ -409,7 +403,6 @@ function restartGame00(game){
 function Game01(gameData) {
     BaseGame.call(this);
     this.gameData = gameData;
-    console.log(this.gameData)
     setUpGame01(this.gameData);
 }
 
@@ -615,21 +608,13 @@ function setUpGame01Screen01(game){ // Photo + Everything Else
 }
 
 function restartGame01(game){
-    console.log("restarting")
     $.ajax({
         url:'gamegenerate_data/',
         type:'post',
         data:$('#get-game').serialize(),
         success:function(e){
-            //console.log('Below is validated game JSON, which should be interpretable')
-            //console.log(e);
-            // now, you can call the code that builds and inserts a game
-            e.game_type = 1; // YADA YADA FIX THIS HACK!
+            e.game_type = 1;
             buildGame(e)
-            // here, have the json on screen :)
-            //var jsonData = '<code align="left">' + JSON.stringify(e, null, 4) + '</code>'
-            //jsonData = jsonData.replace(/\n/g, '<br>');
-            //$("#json-space").html(jsonData);
         }
     });
 }
@@ -749,5 +734,6 @@ var games = {
 function buildGame(gameData) {
     var gameType = gameData['game_type'];
     var Game = games[pad(gameType)];
+    gameData.game_type = gameType;
     Game(gameData);
 };
