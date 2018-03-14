@@ -64,15 +64,22 @@ services:
         build: 
             context: indexer
             dockerfile: Dockerfile.indexer
+        image: python:3.6-slim
+        restart: always
+        volumes:
+            - ./indexer:/app
+            - ${TEI_DIR}:/app/data
         depends_on:
             - elasticsearch
         networks:
             - esnet
         container_name: indexer
+        command: tail -f /dev/null
 
 volumes:
   esdata:
     driver: local
+  
 
 networks:
     esnet:
