@@ -4,10 +4,11 @@ services:
     db:
         environment:
             MYSQL_DATABASE: db
-            MYSQL_PASSWORD: password
             MYSQL_ROOT_PASSWORD: password
-            MYSQL_USER: root
+        restart: always
         image: mysql:latest
+        volumes:
+            - ./mysql_dump:/docker-entrypoint-initdb.d
         ports:
           - 3306:3306
     web:

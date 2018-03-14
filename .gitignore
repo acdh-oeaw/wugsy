@@ -17,6 +17,9 @@ build
 *.sqlite3
 *.sqlite
 
+# MySQL 
+*.sql
+
 # Logs:
 *.log
 
