@@ -2,8 +2,7 @@
 
 # quick script to create and run docker image, with db migrations
 
-docker-compose build
-docker-compose up -d
+docker-compose up -d --build
 sleep 5
 #docker exec -it wugsy_web_1 python3 src/manage.py createsuperuser --name=admin --email=admin@admin.com --no-input
 docker exec -it wugsy_web_1 python3 src/manage.py makemigrations

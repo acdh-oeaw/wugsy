@@ -7,13 +7,18 @@ services:
             MYSQL_ROOT_PASSWORD: password
         restart: always
         image: mysql:latest
+        hostname: wugsy_db_1
         volumes:
             - ./mysql_dump:/docker-entrypoint-initdb.d
+        networks:
+            - esnet
         ports:
           - 3306:3306
     web:
         image: wugsy:latest
-        build: .
+        build:
+            context: .
+            dockerfile: Dockerfile.web
         command: python3 src/manage.py runserver 0.0.0.0:8000
         volumes:
             - .:/code
@@ -43,16 +48,27 @@ services:
             - esdata:/usr/share/elasticsearch/data
         networks:
             - esnet
+
     kibana:
         image: docker.elastic.co/kibana/kibana-oss:6.2.2
         container_name: kibana
         hostname: kibana
         links:
             - elasticsearch
+            - db
         ports:
             - 5601:5601
         networks:
             - esnet
+    indexer:
+        build: 
+            context: indexer
+            dockerfile: Dockerfile.indexer
+        depends_on:
+            - elasticsearch
+        networks:
+            - esnet
+        container_name: indexer
 
 volumes:
   esdata:
